@@ -13,6 +13,6 @@ jobs:
 
       - name: "Hashfile"
         env:
-          RESULT: ${{ hashFiles(join(fromJson('[ "${{ env.workdir }}", "hashme.txt"]'), '/')) }}
+          RESULT: ${{ hashFiles(join(fromJson('[ env.workdir, "hashme.txt"]'), '/')) }}
         run:
           echo "Did it work? $RESULT"
