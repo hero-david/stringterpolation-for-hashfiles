@@ -1,0 +1,18 @@
+on:
+  push:
+
+env:
+  workdir: "demo"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout "
+        uses: actions/checkout@v2
+
+      - name: "Hashfile"
+        env:
+          RESULT: ${{ hashFiles(join(fromJson('[ "${{ env.workdir }}", "hashme.txt"]'), '/')) }}
+        run:
+          echo "Did it work? $RESULT"
